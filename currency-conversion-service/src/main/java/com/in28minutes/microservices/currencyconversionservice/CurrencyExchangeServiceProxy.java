@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 //If we give the url in the FeignClient then we can communicate with only one server. Hence moving to application.properties.
 
-@FeignClient(name="currency-exchange-service")
+//@FeignClient(name="currency-exchange-service")
+@FeignClient(name="netflix-zuul-api-gateway-server")
 @RibbonClient(name="currency-exchange-service")
 public interface CurrencyExchangeServiceProxy {
 
@@ -21,6 +22,7 @@ public interface CurrencyExchangeServiceProxy {
 	//Because the propety names in both the ExchangeValue and CurrencyConversionBean are similar.
 	//Thats how the mapping happens. 
 	
-	@GetMapping("/currency-exchange/from/{from}/to/{to}")
+	//@GetMapping("/currency-exchange/from/{from}/to/{to}")
+	@GetMapping("/currency-exchange-service/currency-exchange/from/{from}/to/{to}")
 	public CurrencyConversionBean retrieveExchangeValue(@PathVariable("from") String from,@PathVariable("to") String to);
 }
